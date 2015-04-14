@@ -1,7 +1,7 @@
 {
   "name": "Feedly Notifier Plus",
   "short_name": "ifnplus",
-  "description": "Feedly Notifier Plus is a badged powered toolbar notifier for feedly.com, a productive way to organize, read and share the content of your favorite feeds, blogs and news sites.",
+  "description": "is a badged powered toolbar notifier for feedly.com (a productive way to organize, read and share the contents).",
   "author": "Jeremy Schomery",
   "version": "0.1.0",
   "manifest_version": 2,

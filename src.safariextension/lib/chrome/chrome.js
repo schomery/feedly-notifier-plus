@@ -56,7 +56,7 @@ app.button = (function () {
     },
     set badge (val) {
       chrome.browserAction.setBadgeText({
-        text: config.options.badge & val ? val + '' : ''
+        text: config.options.badge && val ? val + '' : ''
       });
     }
   };

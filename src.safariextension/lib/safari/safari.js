@@ -40,7 +40,7 @@ app.button = (function () {
         'icon.png';
     },
     set badge (val) {
-      toolbarItem.badge = config.options.badge & val ? val : '';
+      toolbarItem.badge = config.options.badge && val ? val : '';
     }
   };
 })();

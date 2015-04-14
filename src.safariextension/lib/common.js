@@ -102,7 +102,7 @@ var refresh = (function () {
       id = app.timer.setTimeout(refresh, delay - (now - time), true);
       return;
     }
-    console.error((new Date()).toString(), 'refreshing ...');
+    //console.error((new Date()).toString(), 'refreshing ...');
     time = now;
     id = null;
     update();
@@ -125,7 +125,6 @@ app.contentScript.receive('update', function () {
   refresh();
 });
 app.on('badge', function () {
-  console.error(config.options.badge)
   if (config.options.badge) {
     refresh();
   }

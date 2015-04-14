@@ -7,7 +7,7 @@
 	<key>Builder Version</key>
 	<string>10600.4.10.7</string>
 	<key>CFBundleDisplayName</key>
-	<string>Feedly Notifier Plus</string>
+	<string>Notifier Plus for Feedly</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mybrowseraddon.feedly</string>
 	<key>CFBundleInfoDictionaryVersion</key>

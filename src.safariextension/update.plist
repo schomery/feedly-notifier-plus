@@ -6,7 +6,7 @@
    <array>
      <dict>
        <key>CFBundleIdentifier</key>
-       <string>com.add0n.template</string>
+       <string>com.mybrowseraddon.feedly</string>
        <key>Developer Identifier</key>
        <string>KGRSEG9P68</string>
        <key>CFBundleVersion</key>

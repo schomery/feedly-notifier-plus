@@ -1,5 +1,4 @@
 /* globals background */
-/* globals background */
 'use strict';
 
 function check () {

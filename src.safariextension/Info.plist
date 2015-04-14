@@ -48,21 +48,27 @@
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>description</string>
+	<string>is a badged powered toolbar notifier for feedly.com</string>
 	<key>DeveloperIdentifier</key>
-	<string>KGRSEG9P68</string>
+	<string>2C3W8RZ8ND</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
 	<dict>
 		<key>Website Access</key>
 		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>feedly.com</string>
+			</array>
 			<key>Include Secure Pages</key>
 			<true/>
 			<key>Level</key>
-			<string>All</string>
+			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>https://raw.githubusercontent.com/schomery/feedly-notifier-plus/master/src.safariextension/update.plist</string>
 	<key>Website</key>
 	<string>http://mybrowseraddon.com/feedly.html</string>
 </dict>

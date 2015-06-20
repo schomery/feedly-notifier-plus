@@ -115,6 +115,9 @@ var refresh = (function () {
     app.timer.clearInterval(id);
     id = app.timer.setInterval(refresh, config.options.period * 1000);
   });
+  app.unload(function () {
+    app.timer.clearInterval(id);
+  });
 })();
 
 app.contentScript.receive('token', function (token) {
@@ -133,27 +136,62 @@ app.on('badge', function () {
   }
 });
 
-app.on('logged-in', function () {
-  app.button.icon = 'icons';
-});
-app.on('not-logged-in', function () {
-  app.button.icon = 'icons/disabled';
-  app.button.badge = 0;
-  app.button.label = 'Feedly Notifier Plus (disconnected)';
-});
+// icon
+(function () {
+  var icon;
+  app.on('logged-in', function () {
+    if (icon !== 'icons') {
+      app.button.icon = 'icons';
+      icon = 'icons';
+    }
+  });
+  app.on('not-logged-in', function () {
+    if (icon !== 'icons/disabled') {
+      app.button.icon = 'icons/disabled';
+      app.button.badge = 0;
+      app.button.label = 'Feedly Notifier Plus (disconnected)';
+      icon = 'icons/disabled';
+    }
+  });
+})();
 
 // button
 app.button.onCommand(function () {
-  app.tab.list().then(function (tabs) {
+  // if feedly is open, just switch to it
+  app.tab.list()
+  .then(function (tabs) {
     for (var i in tabs) {
       var tab = tabs[i];
       if (tab.url && (tab.url.indexOf('https://feedly.com') === 0 || tab.url.indexOf('http://feedly.com') === 0)) {
-        app.tab.activate(tab);
+        if (app.tab.isActive(tab)) {
+          app.contentScript.send('refresh');
+        }
+        else {
+          app.tab.activate(tab);
+        }
         return false;
       }
     }
     return true;
-  }).then(function (bol) {
+  })
+  // if current tab is blank, load feedly in it
+  .then(function (bol) {
+    if (!bol) {
+      return false;
+    }
+    return app.tab.list()
+      .then(function (tabs) {
+        for (var i in tabs) {
+          var tab = tabs[i];
+          if (['chrome://newtab/', 'about:blank', 'about:newtab'].indexOf(tab.url) !== -1 && app.tab.isActive(tab)) {
+            app.tab.open('https://feedly.com', tab);
+            return false;
+          }
+        }
+        return true;
+      });
+  })
+  .then(function (bol) {
     if (bol) {
       app.tab.open('https://feedly.com');
     }

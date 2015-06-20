@@ -1,4 +1,4 @@
-/* globals self */
+/* globals self, unload */
 'use strict';
 
 var background = {
@@ -15,3 +15,9 @@ var manifest = {
 };
 
 var globals = self.options.globals;
+
+self.port.on('detach', function () {
+  if (unload) {
+    unload();
+  }
+});

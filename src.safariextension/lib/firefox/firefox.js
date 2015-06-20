@@ -5,7 +5,6 @@ var self          = require('sdk/self'),
     data          = self.data,
     sp            = require('sdk/simple-prefs'),
     buttons       = require('sdk/ui/button/action'),
-    Request       = require('sdk/request').Request,
     prefs         = sp.prefs,
     pageMod       = require('sdk/page-mod'),
     tabs          = require('sdk/tabs'),
@@ -53,17 +52,23 @@ exports.button = (function () {
       onClick = c;
     },
     set label (val) {
-      button.label = val;
+      try {
+        button.label = val;
+      }
+      catch (e) {}
     },
     set badge (val) {
       tbExtra.setBadge(config.options.badge ? val : '');
     },
     set icon (root) {
-      button.icon = {
-        '24': './' + root + '/24.png',
-        '32': './' + root + '/32.png',
-        '64': './' + root + '/64.png'
-      };
+      try {
+        button.icon = {
+          '24': './' + root + '/24.png',
+          '32': './' + root + '/32.png',
+          '64': './' + root + '/64.png'
+        };
+      }
+      catch (e) {}
     }
   };
 })();
@@ -156,10 +161,15 @@ exports.get = function (url, headers, data) {
 };
 
 exports.tab = {
-  open: function (url) {
-    tabs.open({
-      url: url
-    });
+  open: function (url, tab) {
+    if (tab) {
+      tab.url = url;
+    }
+    else {
+      tabs.open({
+        url: url
+      });
+    }
   },
   list: function () {
     var temp = [];
@@ -170,6 +180,9 @@ exports.tab = {
   },
   activate: function (tab) {
     tab.activate();
+  },
+  isActive: function (tab) {
+    return tabs.activeTab === tab;
   }
 };
 
@@ -224,3 +237,7 @@ unload.when(function () {
     });
   });
 });
+
+exports.unload = function (c) {
+  unload.when(c);
+};

@@ -4,7 +4,7 @@
   "description": "Feedly Notifier Plus is a badged powered toolbar notifier for feedly.com, a productive way to organize, read and share the content of your favorite feeds, blogs and news sites.",
   "id": "jid0-gmNwQhBfIokLdQsCvbGhnBfvNbt",
   "license": "mozilla public license 1.1",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Jeremy Schomery",
   "lib": "lib",
   "main": "common",

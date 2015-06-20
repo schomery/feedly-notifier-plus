@@ -112,11 +112,18 @@ app.contentScript = (function () {
 })();
 
 app.tab = {
-  open: function (url) {
-    chrome.tabs.create({
-      url: url,
-      active: true
-    });
+  open: function (url, tab) {
+    if (tab) {
+      chrome.tabs.update(tab.tabId, {
+        url: url
+      });
+    }
+    else {
+      chrome.tabs.create({
+        url: url,
+        active: true
+      });
+    }
   },
   list: function () {
     var d = app.Promise.defer();
@@ -131,6 +138,9 @@ app.tab = {
     chrome.tabs.update(tab.id, {
        active: true
     });
+  },
+  isActive: function (tab) {
+    return tab.active;
   }
 };
 
@@ -158,3 +168,7 @@ app.options = {
     });
   }
 };
+
+app.unload = function () {
+
+}

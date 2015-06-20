@@ -74,8 +74,13 @@ app.get = function (url, headers, data) {
 };
 
 app.tab = {
-  open: function (url) {
-    safari.application.activeBrowserWindow.openTab('foreground').url = url;
+  open: function (url, tab) {
+    if (tab) {
+      tab.url = url;
+    }
+    else {
+      safari.application.activeBrowserWindow.openTab('foreground').url = url;
+    }
   },
   list: function () {
     var wins = safari.application.browserWindows;
@@ -89,6 +94,9 @@ app.tab = {
   },
   activate: function (tab) {
     tab.activate();
+  },
+  isActive: function (tab) {
+    return tab === safari.application.activeBrowserWindow.activeTab;
   }
 };
 
@@ -148,3 +156,7 @@ app.options = (function () {
     }
   };
 })();
+
+app.unload = function () {
+
+}

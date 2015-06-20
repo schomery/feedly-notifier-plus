@@ -72,8 +72,11 @@ exports.setBadge = (function () {
     return function (val) {
       badge = val;
       if (button) {
-        button.badge = val ? val : '';
-        button.badgeColor = '';
+        try {
+          button.badge = val ? val : '';
+          button.badgeColor = '';
+        }
+        catch (e) {}
       }
     };
   }

@@ -1,5 +1,7 @@
-/* globals background */
+/* globals background, unload */
 'use strict';
+
+var id1, id2, id3;
 
 function check () {
   var token = /feedlyToken\"\:\"([^\"]+)/.exec(document.cookie);
@@ -9,7 +11,7 @@ function check () {
   }
   else {
     background.send('token', '');
-    window.setTimeout(check, 3000);
+    id1 = window.setTimeout(check, 3000);
   }
 }
 
@@ -21,11 +23,11 @@ function logout () {
   if (span) {
     span.addEventListener('click', function () {
       // wait for feedly to clear cookies
-      window.setTimeout(check, 3000);
+      id2 = window.setTimeout(check, 3000);
     });
   }
   else {
-    window.setTimeout(logout, 3000);
+    id3 = window.setTimeout(logout, 3000);
   }
 }
 
@@ -42,4 +44,24 @@ observer.observe(document, {
   characterData: true,
   attributeOldValue: true,
   characterDataOldValue: true
+});
+
+function unload () {
+  observer.disconnect();
+  if (id1) {
+    window.clearTimeout(id1);
+  }
+  if (id2) {
+    window.clearTimeout(id2);
+  }
+  if (id3) {
+    window.clearTimeout(id3);
+  }
+}
+
+background.receive('refresh', function () {
+  var elem = document.getElementById('pageActionRefresh');
+  if (elem) {
+    elem.click();
+  }
 });

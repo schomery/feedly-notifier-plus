@@ -12,7 +12,7 @@
        <key>CFBundleVersion</key>
        <string>1</string>
        <key>CFBundleShortVersionString</key>
-       <string>0.1.1</string>
+       <string>0.1.2</string>
        <key>URL</key>
        <string>https://github.com/schomery/feedly-notifier-plus/blob/master/src.safariextension/executables/extension.safariextz?raw=true</string>
      </dict>

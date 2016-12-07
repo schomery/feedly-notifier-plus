@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Feedly Notifier Plus Options Page</title>
+  </head>
+<body>
+  <style>
+    .note {
+      font-size: 80%;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  </style>
+
+  <label>
+    Display badge notification
+    <input type="checkbox" id="badge">
+  </label>
+  <p class="note">
+  Check this option if you would like to have badge notification on toolbar button. It may take a few seconds for the badge to appear
+  </p>
+
+  <label>
+    Update badge notification every (in seconds)
+    <input type="number" min=5 id="period">
+  </label>
+  <p class="note">
+  Minimum acceptable period is 30 seconds
+  </p>
+
+  <label>
+    Show FAQs page on upgrades:
+    <input type="checkbox" id="show">
+  </label>
+  <p class="note">
+  If this option is checked, the extension displays welcome page after each upgrade to notify you about the recent changes
+  </p>
+
+  <div>
+    <button id="save">Save</button> <span id="status"></span>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

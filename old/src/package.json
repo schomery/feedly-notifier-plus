@@ -1,0 +1,36 @@
+{
+  "title": "Feedly Notifier Plus",
+  "name": "ifnplus",
+  "description": "is a smart badged powered toolbar notifier for feedly.com, a productive way to organize, read and share the content of your favorite feeds, blogs and news sites.",
+  "id": "jid0-gmNwQhBfIokLdQsCvbGhnBfvNbt@jetpack",
+  "license": "mozilla public license 1.1",
+  "version": "0.1.4",
+  "author": "Jeremy Schomery",
+  "main": "./lib/common.js",
+  "url": "http://mybrowseraddon.com/feedly.html",
+  "permissions": {
+    "private-browsing": true,
+    "multiprocess": true
+  },
+  "preferences": [{
+    "title": "Display badge notification",
+    "description": "Check this option if you would like to have badge notification on toolbar button. It may take a few seconds for the badge to appear.",
+    "type": "bool",
+    "name": "badge",
+    "value": true
+  },
+  {
+    "title": "Update badge notification every (in seconds)",
+    "description": "Minimum acceptable period is 30 seconds.",
+    "type": "integer",
+    "name": "period",
+    "value": 900
+  },
+  {
+    "title": "Show FAQs page on upgrades:",
+    "description": "If this option is checked, the extension displays welcome page after each upgrade to notify you about the recent changes.",
+    "type": "bool",
+    "name": "show",
+    "value": true
+  }]
+}
